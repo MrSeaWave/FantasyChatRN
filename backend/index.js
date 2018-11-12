@@ -1,2 +1,2 @@
 require('babel-register');
-require('./service')
+require('./src/service')

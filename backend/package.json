@@ -10,6 +10,9 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
+    "start": "node index.js",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && babel src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

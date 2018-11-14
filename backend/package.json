@@ -4,13 +4,22 @@
   "description": "backend",
   "main": "index.js",
   "dependencies": {
-    "koa": "^2.6.2"
+    "debug": "^4.1.0",
+    "koa": "^2.6.2",
+    "koa-body": "^4.0.4",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0",
+    "koa-static-cache": "^5.1.2",
+    "log4js": "^3.0.6"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0"
   },
   "scripts": {
     "start": "node index.js",
+    "hot-start": "nodemon index.js",
     "clean": "rm -rf dist",
     "build": "npm run clean && babel src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"

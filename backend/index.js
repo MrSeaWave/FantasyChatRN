@@ -1,2 +1,3 @@
-require('babel-register');
-require('./src/service')
+require("babel-register");
+require("babel-polyfill");
+require("./src/service");

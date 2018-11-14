@@ -15,7 +15,7 @@
 - [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)
 - [nodemon](https://github.com/remy/nodemon):热更新`npm install -g nodemon`
 - [log4.js](https://www.npmjs.com/package/log4js):本地输出log文件，可按照时间或者按照文件大小
-
+- [debug](https://www.npmjs.com/package/debug)
 
 ## postgresSql
 ```

@@ -18,8 +18,8 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
-    "start": "DEBUG=workerChat:* node index.js",
-    "hot-start": "DEBUG=workerChat:* nodemon index.js",
+    "start": "DEBUG=workerChat:* DEBUG_COLORS=true node index.js",
+    "hot-start": "DEBUG=workerChat:* DEBUG_COLORS=true nodemon index.js",
     "clean": "rm -rf dist",
     "build": "npm run clean && babel src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"

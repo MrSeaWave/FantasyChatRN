@@ -2,12 +2,11 @@ import Koa from "koa";
 import koaBody from "koa-body";
 import { config } from "./config/config";
 import logger from "./middleware/logger";
-import { errorLog, startLog } from "./config/debuggerConfig";
+import { startLog, errorLog } from "./config/debuggerConfig";
 const app = new Koa();
-
 const main = ctx => {
   ctx.response.body = "hello world";
-  ctx.throw(500);
+  //ctx.throw(500);
 };
 // logger,放在最外层
 app.use(logger);
@@ -21,6 +20,7 @@ app.on("error", function(err) {
 
 app.listen(config.port, () => {
   startLog(`you open localhost:${config.port} to check`);
+
   console.log(
     ` succeed \n please open localhost:${
       config.port

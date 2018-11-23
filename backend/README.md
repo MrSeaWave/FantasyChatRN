@@ -34,6 +34,12 @@ koa 插件
 - ~~[koa-session-minimal](https://www.npmjs.com/package/koa-session-minimal)：处理`session`的中间件~~
 - ~~[koa-pg-session](https://www.npmjs.com/package/koa-pg-session):session存放在`PostgreSQL`数据库中~~
 - [koa-session](https://www.npmjs.com/package/koa-session):处理`session`的中间件
+
+实用类插件
+- [ms](https://www.npmjs.com/package/ms):各种时间格式转换为毫秒
+- [sprintf-js](https://www.npmjs.com/package/sprintf-js):拼接字符串
+
+
 ## postgresSql
 ```
 $ pg_ctl -V

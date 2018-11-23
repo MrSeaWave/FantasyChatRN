@@ -5,11 +5,13 @@ import { config } from "./config/config";
 import logger from "./middleware/logger";
 import { startLog, errorLog } from "./config/debuggerConfig";
 import { sessionConfig } from "./config/sessionConfig";
+
 const app = new Koa();
 const main = ctx => {
   ctx.response.body = "hello world";
   //ctx.throw(500);
 };
+
 // logger,放在最外层
 app.use(logger);
 // 使用session 中间键

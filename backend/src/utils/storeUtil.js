@@ -1,13 +1,30 @@
+/*
+* @class
+* @dec make session to modify pg store's session data
+* @param {object} connection - about connect pg ,数据库的一些配置
+* @param {string} connection.user
+* @param {string} connection.host
+* @param {string} connection.database
+* @param {string} connection.password
+* @param {string} connection.port
+* @param {object} options - extra options ，外界可以提供的options
+* @param {string} options.schema - defines the schema in which to create or find the table that we will use to store session data. Defaults to public
+* @param {string} options.table - defines the name of the sessions table that we will create or find. Defaults to session
+* @param {boolean} options.create - True if the module is allowed to create a new table to store sessions. Defaults to true
+* @param {number} options.cleanupTime - ( in milliseconds ) The amount of time between cleaning up the database for old sessions. Defaults to 2700000 (45 minutes)
+* */
+
 import { Pool } from "pg";
 import { sprintf } from "sprintf-js";
 import ms from "ms";
+import { startLog } from "../config/debuggerConfig";
 
 class PgStore {
   constructor(connection, options) {
     //super();
-    this.storage = {};
     this.pool = new Pool(connection);
     this.query = (query, params) => {
+      // console.log("sql：", query);
       return this.pool.query(query, params);
     };
     this.ready = false;
@@ -24,6 +41,7 @@ class PgStore {
   }
 
   setUp() {
+    startLog("session setUp");
     //Only setup if we're not ready
     if (this.ready) return;
 
@@ -113,29 +131,28 @@ class PgStore {
     );
   }
 
-  async get(key, maxAge, { rolling }) {
-    console.log('运行到此？')
+  async get(key, maxAge, { rolling } = {}) {
     if (!this.ready)
       throw new Error(
         `Error trying to access koa postgres session: session setup has not been run.`
       );
 
     //Get the existing session row
-    const existing = await this.query(this.getValueSql, [key]);
-
+    const { rows: existing } = await this.query(this.getValueSql, [key]);
     //If there is no such row, return false
     if (existing.length <= 0) return false;
     //Otherwise return the row
     else return existing[0].session;
   }
 
-  async set(key, sess, maxAge, { rolling, changed }) {
+  async set(key, sess, maxAge, { rolling, changed } = {}) {
     if (!this.ready)
       throw new Error(
         `Error trying to modify koa postgres session: session setup has not been run.`
       );
 
     const ttl = maxAge || ms("45 minutes");
+    // pg sql to_timestamp Convert Unix epoch (seconds since 1970-01-01 00:00:00+00) to timestamp
     const expiry = (Date.now() + ttl) / 1000;
 
     //If there is a row, update it
@@ -158,7 +175,7 @@ class PgStore {
 
     //Each interval of cleanupTime, run the cleanup script
     setTimeout(function interval() {
-      sess.query(sess.cleanupSql, Date.now() / 1000).then(() => {
+      sess.query(sess.cleanupSql, [Date.now() / 1000]).then(() => {
         //Recurse so that the cleanupTime can be dynamic
         setTimeout(interval, sess.options.cleanupTime);
       });

@@ -7,13 +7,12 @@ import { startLog, errorLog, infoLog } from "./config/debuggerConfig";
 import { sessionConfig } from "./config/sessionConfig";
 import { sessionInfo } from "./demo/sessionInfo/sessionMIddleware";
 
+import userRouter from "./routes/userRouter";
+import { createAllTable } from "./models";
+
+createAllTable();
 const app = new Koa();
 app.keys = ["fantasy_chat_app_keys"];
-
-const main = ctx => {
-  ctx.response.body = "hello world";
-  //ctx.throw(500);
-};
 
 // 使用logger中间键,放在最外层
 app.use(logger);
@@ -22,10 +21,11 @@ app.use(logger);
 app.use(session(sessionConfig, app));
 
 // demo路由：修改，获取session
-app.use(sessionInfo);
+// app.use(sessionInfo);
 
-// app.use(koaBody());
-app.use(main);
+// 后端监听路由
+app.use(koaBody());
+app.use(userRouter.routes()).use(userRouter.allowedMethods());
 
 app.on("error", err => {
   errorLog(err.message);

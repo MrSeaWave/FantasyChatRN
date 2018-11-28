@@ -27,6 +27,8 @@ src
 - [log4.js](https://www.npmjs.com/package/log4js):本地输出log文件，可按照时间或者按照文件大小
 - [debug](https://www.npmjs.com/package/debug):debug
 - [pg](https://www.npmjs.com/package/pg):连接`PostgreSQL`数据库
+- [pg sql](http://www.postgresqltutorial.com/):sql
+- [pg_sql_zh](https://pg.sjk66.com/postgresql/create-table):中文sql
 - [crypto]():提供通用的加密和哈希算法
 - [uuid](https://www.npmjs.com/package/uuid):uuid
 
@@ -42,13 +44,12 @@ koa 插件
 实用类插件
 - [ms](https://www.npmjs.com/package/ms):各种时间格式转换为毫秒
 - [sprintf-js](https://www.npmjs.com/package/sprintf-js):拼接字符串
-
+- [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js):简单的电话号码解析
 
 ## postgresSql
 ```
 $ pg_ctl -V
 pg_ctl (PostgreSQL) 10.5
 ```
-## TODO
-- [ ] add user login sinup api
-- [ ] 增加api与session联动，校验authorize
+
+

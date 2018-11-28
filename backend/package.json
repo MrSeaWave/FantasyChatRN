@@ -11,6 +11,7 @@
     "koa-session": "^5.10.0",
     "koa-static": "^5.0.0",
     "koa-static-cache": "^5.1.2",
+    "libphonenumber-js": "^1.6.8",
     "log4js": "^3.0.6",
     "ms": "^2.1.1",
     "pg": "^7.6.1",

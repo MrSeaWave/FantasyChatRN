@@ -1,9 +1,16 @@
 import { sprintf } from "sprintf-js";
+import pgStorePool from "../utils/pgStorePool";
 
-export const createKpiPersoanl = sprintf(
-    "CREATE TABLE IF NOT EXISTS %s ( " +
+const tableName = "kpi_personal";
+export const createKpiPersonalDataType = sprintf(
+  "CREATE TABLE IF NOT EXISTS %s ( " +
     "ID  SERIAL NOT NULL PRIMARY KEY," +
     "name VARCHAR(100) NOT NULL," +
     "password VARCHAR(100) NOT NULL" +
-    ")",'kpi_personal'
+    ")",
+  tableName
 );
+
+export const createKpiPersonalTable = () => {
+  pgStorePool.query(createKpiPersonalDataType);
+};

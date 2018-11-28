@@ -32,11 +32,11 @@ app.on("error", err => {
 });
 
 app.listen(config.port, () => {
-  startLog(`you open localhost:${config.port} to check`);
+  startLog(`you can open localhost:${config.port} to check`);
 
   console.log(
-    ` succeed \n please open localhost:${
+    `  succeed \n  please open localhost:${
       config.port
-    } \n or \n http://127.0.0.1:${config.port} `
+    } \n  or \n  http://127.0.0.1:${config.port} `
   );
 });

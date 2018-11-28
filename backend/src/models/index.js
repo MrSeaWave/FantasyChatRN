@@ -1,10 +1,13 @@
-console.log('index.js')
-import pgStorePool from "../utils/connectPgStoreUtils";
-import { createUsers } from "./users";
-import { createKpiPersoanl } from "./kpi_personal";
+import pgStorePool from "../utils/pgStorePool";
+import { createUsersTable } from "./users";
+import { createKpiPersonalTable } from "./kpi_personal";
+import { createOptionsTable } from "./options";
+import { createTypeTable } from "./type";
 
 // 创建表
 export const createAllTable = () => {
-  pgStorePool.query(createUsers);
-  pgStorePool.query(createKpiPersoanl);
+  createUsersTable();
+  createKpiPersonalTable();
+  createTypeTable();
+  createOptionsTable();
 };
